@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For When You're Sad 💕</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #f8bbd0;
+            --primary-dark: #ec407a;
+            --text-color: #424242;
+            --white: #ffffff;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #fff5f8;
+            overflow-x: hidden;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .reasons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .reason {
+            padding: 1rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .reason:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .meme-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meme {
+            width: 200px;
+            height: 200px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .meme img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        
+        .meme:hover {
+            transform: scale(1.05);
+        }
+        
+        .hug-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .hug-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(236, 64, 122, 0.3);
+        }
+        
+        .contact-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            background-color: var(--white);
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-link:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .hug-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .hug-animation.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .hug-content {
+            text-align: center;
+            font-size: 5rem;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% {
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(0.8);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .meme {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hey Beautiful, I See You're Having a Tough Day 💕</h1>
+        
+        <div class="card">
+            <p>I'm sorry you're feeling down. Remember that it's okay to not be okay sometimes, and I'm always here for you no matter what.</p>
+            <p>Here are a few things to remind you how special you are:</p>
+        </div>
+        
+        <h2>Reasons Why You're Amazing</h2>
+        <div class="reasons">
+            <div class="reason">You have the most beautiful soul I've ever known.</div>
+            <div class="reason">Your strength in difficult situations is truly inspiring.</div>
+            <div class="reason">You make everyone around you happier just by being you.</div>
+            <div class="reason">You've accomplished so much already, and you're only getting started.</div>
+            <div class="reason">The way your eyes light up when you're excited about something melts my heart.</div>
+        </div>
+        
+        <h2>Some Memes to Make You Smile</h2>
+        <div class="meme-container">
+            <div class="meme">
+                <img src="assets/images/meme1.jpg" alt="Funny Meme 1">
+            </div>
+            <div class="meme">
+                <img src="assets/images/meme2.jpg" alt="Funny Meme 2">
+            </div>
+            <div class="meme">
+                <img src="assets/images/meme3.jpg" alt="Funny Meme 3">
+            </div>
+            <div class="meme">
+                <img src="assets/images/meme4.jpg" alt="Funny Meme 4">
+            </div>
+        </div>
+        
+        <h2>Need a Hug?</h2>
+        <button id="hug-button" class="hug-button">Click For a BIG Virtual Hug 🤗</button>
+        
+        <div class="card">
+            <p>If you need someone to talk to right now, I'm just a message away:</p>
+            <a href="tel:+1234567890" class="contact-link">📞 Call Me</a>
+            <a href="sms:+1234567890" class="contact-link">💬 Text Me</a>
+        </div>
+        
+        <a href="index.html" class="back-link">← Go Back To Our Anniversary Site</a>
+    </div>
+    
+    <div id="hug-animation" class="hug-animation">
+        <div class="hug-content">
+            🫂❤️
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('hug-button').addEventListener('click', function() {
+            const hugAnimation = document.getElementById('hug-animation');
+            hugAnimation.classList.add('active');
+            
+            setTimeout(() => {
+                hugAnimation.classList.remove('active');
+            }, 3000);
+            
+            // Create floating hearts
+            for (let i = 0; i < 20; i++) {
+                createFloatingHeart();
+            }
+        });
+        
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.style.position = 'fixed';
+            heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.top = `${Math.random() * 100}vh`;
+            heart.style.opacity = '0';
+            heart.style.transition = 'all 2s ease';
+            heart.innerHTML = '❤️';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.style.opacity = '1';
+                heart.style.transform = `translate(${Math.random() * 100 - 50}px, -${Math.random() * 100 + 50}px)`;
+            }, 100);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+    </script>
+</body>
+</html> 
