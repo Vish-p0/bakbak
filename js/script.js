@@ -1,3 +1,13 @@
+// Navbar Scroll Effect
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
 // Initialize ScrollReveal for animations
 const sr = ScrollReveal({
     origin: 'bottom',
@@ -25,8 +35,8 @@ sr.reveal('.gifts-section h2', {});
 sr.reveal('.gift-box', { interval: 200 });
 
 // Start date of relationship (YYYY-MM-DD format)
-// Change this to your actual anniversary date
-const startDate = new Date('2023-06-15T00:00:00');
+// The moment she said "I love you too"
+const startDate = new Date('2024-05-25T02:52:00');
 
 // Countdown Timer
 function updateCountdown() {
@@ -287,4 +297,148 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+});
+
+// Background Music Controls
+const backgroundMusic = document.getElementById('backgroundMusic');
+const muteBtn = document.getElementById('muteBtn');
+const volumeSlider = document.getElementById('volumeSlider');
+
+let isMuted = false;
+let previousVolume = 0.5;
+
+// Initialize audio settings
+if (backgroundMusic) {
+    backgroundMusic.volume = 0.5; // Start at 50% volume
+    
+    // Auto-play with user interaction (required by browsers)
+    document.addEventListener('click', function() {
+        if (backgroundMusic.paused) {
+            backgroundMusic.play().catch(e => console.log('Audio play failed:', e));
+        }
+    }, { once: true });
+}
+
+// Mute/Unmute functionality
+if (muteBtn) {
+    muteBtn.addEventListener('click', function() {
+        if (backgroundMusic) {
+            if (isMuted) {
+                backgroundMusic.volume = previousVolume;
+                volumeSlider.value = previousVolume * 100;
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                isMuted = false;
+            } else {
+                previousVolume = backgroundMusic.volume;
+                backgroundMusic.volume = 0;
+                volumeSlider.value = 0;
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                isMuted = true;
+            }
+        }
+    });
+}
+
+// Volume slider functionality
+if (volumeSlider) {
+    volumeSlider.addEventListener('input', function() {
+        if (backgroundMusic) {
+            const volume = this.value / 100;
+            backgroundMusic.volume = volume;
+            
+            // Update mute button icon based on volume
+            if (volume === 0) {
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                isMuted = true;
+            } else if (volume < 0.5) {
+                muteBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+                isMuted = false;
+                previousVolume = volume;
+            } else {
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                isMuted = false;
+                previousVolume = volume;
+            }
+        }
+    });
+}
+
+// Play/pause on spacebar (optional)
+document.addEventListener('keydown', function(e) {
+    if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        if (backgroundMusic) {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play().catch(e => console.log('Audio play failed:', e));
+            } else {
+                backgroundMusic.pause();
+            }
+        }
+    }
+});
+
+// Floating Emojis for Timeline Section
+function createFloatingEmojis() {
+    const timelineSection = document.querySelector('.timeline-section');
+    if (!timelineSection) return;
+    
+    const emojis = ['💕', '❤️', '✨', '🫶', '🐧', '🩷', '💞', '💖', '💝', '💘'];
+    const patterns = ['pattern-1', 'pattern-2', 'pattern-3', 'pattern-4', 'pattern-5'];
+    
+    function createEmoji() {
+        const emoji = document.createElement('div');
+        emoji.classList.add('floating-emoji');
+        
+        // Assign random pattern
+        const randomPattern = patterns[Math.floor(Math.random() * patterns.length)];
+        emoji.classList.add(randomPattern);
+        
+        emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // Random position within the timeline section
+        const sectionRect = timelineSection.getBoundingClientRect();
+        emoji.style.left = Math.random() * 90 + 5 + '%'; // 5% to 95%
+        emoji.style.top = Math.random() * 80 + 10 + '%'; // 10% to 90%
+        
+        // Random size variation
+        const size = Math.random() * 1 + 1.5; // 1.5rem to 2.5rem
+        emoji.style.fontSize = size + 'rem';
+        
+        // Random animation delay
+        emoji.style.animationDelay = Math.random() * 10 + 's';
+        
+        timelineSection.appendChild(emoji);
+    }
+    
+    // Create emojis distributed throughout the section
+    function populateEmojis() {
+        // Clear existing emojis
+        const existingEmojis = timelineSection.querySelectorAll('.floating-emoji');
+        existingEmojis.forEach(emoji => emoji.remove());
+        
+        // Create 20 emojis for the timeline section
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => createEmoji(), i * 200);
+        }
+    }
+    
+    // Initial population
+    populateEmojis();
+    
+    // Add new emojis periodically to maintain density
+    setInterval(() => {
+        if (timelineSection.querySelectorAll('.floating-emoji').length < 15) {
+            createEmoji();
+        }
+    }, 3000);
+}
+
+// Start floating emojis when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(createFloatingEmojis, 1000); // Start after 1 second
+});
+
+// Recreate emojis when window is resized
+window.addEventListener('resize', function() {
+    setTimeout(createFloatingEmojis, 500);
 }); 

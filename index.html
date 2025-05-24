@@ -3,17 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Anniversary, My Love 💖</title>
+    <title>Happy Anniversary, Bak Bak 🐧💕</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/images/logos/logo.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#hero" class="navbar-brand">
+                <img src="assets/images/logos/logo_name.png" alt="Logo" class="nav-logo">
+                <span class="love-text">I Love You</span>
+            </a>
+            <div class="audio-controls">
+                <button id="muteBtn" class="audio-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="50">
+            </div>
+        </div>
+        <!-- Hidden audio element -->
+        <audio id="backgroundMusic" loop preload="auto">
+            <source src="assets/audio/somewhere_only_we_know.mp3" type="audio/mpeg">
+            <!-- Fallback for browsers that don't support MP3 -->
+            <source src="assets/audio/somewhere_only_we_know.ogg" type="audio/ogg">
+        </audio>
+    </nav>
+
     <!-- Landing Page / Hero Section -->
     <section id="hero" class="hero">
         <div class="overlay"></div>
         <div class="hero-content">
-            <h1>Happy Anniversary, My Love 💖</h1>
+            <h1>Happy Anniversary, Bak Bak 🐧💕</h1>
             <p>Let's take a walk down memory lane together 🌸</p>
             <a href="#timeline" class="cta-button">Start Our Journey ➤</a>
         </div>
@@ -24,44 +47,179 @@
         <h2>Our Love Story Timeline</h2>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-icon">💫</div>
+                <div class="timeline-icon">👋</div>
                 <div class="timeline-content">
-                    <h3>We Met</h3>
-                    <p class="date">[Date]</p>
-                    <p>The day that changed everything. I still remember exactly how you looked.</p>
+                    <h3>First Meeting</h3>
+                    <p class="date">19/12/2023</p>
+                    <p>First met her - the day that changed everything.</p>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-icon">🍝</div>
+                <div class="timeline-icon">💝</div>
                 <div class="timeline-content">
-                    <h3>First Date</h3>
-                    <p class="date">[Date]</p>
-                    <p>That nervous first date at [Place]. Who knew it would be the start of something amazing?</p>
+                    <h3>First Confession</h3>
+                    <p class="date">9/05/2024</p>
+                    <p>She forced it out of me!</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-icon">💌</div>
                 <div class="timeline-content">
-                    <h3>First "I Love You"</h3>
-                    <p class="date">[Date]</p>
-                    <p>My heart was racing when I finally said those three words.</p>
+                    <h3>Second Confession</h3>
+                    <p class="date">20/05/2024</p>
+                    <p>First time saying "I love you" ❤️</p>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-icon">✈️</div>
+                <div class="timeline-icon">✨</div>
                 <div class="timeline-content">
-                    <h3>Trips Together</h3>
-                    <p class="date">[Date]</p>
-                    <p>Our adventures exploring the world together, creating memories that last forever.</p>
+                    <h3>Third Time's the Charm</h3>
+                    <p class="date">25/05/2024 01:10</p>
+                    <p>I confessed again - third time's the charm✨</p>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-icon">😂</div>
+                <div class="timeline-icon">❤️</div>
                 <div class="timeline-content">
-                    <h3>Funniest Memory</h3>
-                    <p class="date">[Date]</p>
-                    <p>Remember when we [funny story]? I've never laughed so hard in my life!</p>
+                    <h3>She Said Yes!</h3>
+                    <p class="date">25/05/2024 02:52</p>
+                    <p>The moment she said "I love you too"</p>
                 </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">💍</div>
+                <div class="timeline-content">
+                    <h3>It's Official</h3>
+                    <p class="date">25/05/2024 16:41</p>
+                    <p>It's Official 💍💕</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🤝</div>
+                <div class="timeline-content">
+                    <h3>First Meeting After</h3>
+                    <p class="date">11/06/2024</p>
+                    <p>Met her finally after getting together, held her hand for the first time</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🎬</div>
+                <div class="timeline-content">
+                    <h3>First Date & First Kiss</h3>
+                    <p class="date">25/06/2024</p>
+                    <p>11:00 Movie date and our first kiss at 10:07</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🗼</div>
+                <div class="timeline-content">
+                    <h3>Lotus Tower Date</h3>
+                    <p class="date">28/06/2024</p>
+                    <p>Our second date at the beautiful Lotus Tower</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🌟</div>
+                <div class="timeline-content">
+                    <h3>Planetarium & Beach</h3>
+                    <p class="date">25/07/2024</p>
+                    <p>Third date exploring the stars and ocean together</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">👨‍👩‍👧</div>
+                <div class="timeline-content">
+                    <h3>Meeting Her Parents</h3>
+                    <p class="date">23/09/2024</p>
+                    <p>First time meeting her parents and visiting her place</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">👨‍👩‍👦</div>
+                <div class="timeline-content">
+                    <h3>Meeting My Parents</h3>
+                    <p class="date">20/10/2024</p>
+                    <p>The day she met my parents</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🚗</div>
+                <div class="timeline-content">
+                    <h3>Car Adventure</h3>
+                    <p class="date">21/11/2024</p>
+                    <p>Scratched my car - Bad date but turned it around</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🎄</div>
+                <div class="timeline-content">
+                    <h3>First Christmas</h3>
+                    <p class="date">14/12/2024</p>
+                    <p>Our first Christmas celebration together</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">👯‍♀️</div>
+                <div class="timeline-content">
+                    <h3>Best Friend Meeting</h3>
+                    <p class="date">28/12/2024</p>
+                    <p>Met her best friend</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🏮</div>
+                <div class="timeline-content">
+                    <h3>First Valentine's Day</h3>
+                    <p class="date">14/02/2025</p>
+                    <p>First Valentine's celebration + lantern festival</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🏥</div>
+                <div class="timeline-content">
+                    <h3>Hospital Birthday</h3>
+                    <p class="date">17/04/2025</p>
+                    <p>Her birthday was in hospital cause she had a surgery</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">🏠</div>
+                <div class="timeline-content">
+                    <h3>Home Visit</h3>
+                    <p class="date">11/05/2025</p>
+                    <p>She came to my house</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-icon">💑</div>
+                <div class="timeline-content">
+                    <h3>First Anniversary</h3>
+                    <p class="date">25/05/2025</p>
+                    <p>Celebrating one year of us ❤️</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Widget -->
+    <section id="countdown" class="countdown-section">
+        <h2>We've Been Together For</h2>
+        <div class="countdown-container">
+            <div class="countdown-item">
+                <span id="days">0</span>
+                <p>Days</p>
+            </div>
+            <div class="countdown-item">
+                <span id="hours">0</span>
+                <p>Hours</p>
+            </div>
+            <div class="countdown-item">
+                <span id="minutes">0</span>
+                <p>Minutes</p>
+            </div>
+            <div class="countdown-item">
+                <span id="seconds">0</span>
+                <p>Seconds</p>
             </div>
         </div>
     </section>
@@ -173,29 +331,6 @@
         <div class="compliment-container">
             <p id="compliment-text">Click the button to see why I love you! 💕</p>
             <button id="compliment-button" class="cta-button">Click for a reason I love you 💕</button>
-        </div>
-    </section>
-
-    <!-- Countdown Widget -->
-    <section id="countdown" class="countdown-section">
-        <h2>We've Been Together For</h2>
-        <div class="countdown-container">
-            <div class="countdown-item">
-                <span id="days">0</span>
-                <p>Days</p>
-            </div>
-            <div class="countdown-item">
-                <span id="hours">0</span>
-                <p>Hours</p>
-            </div>
-            <div class="countdown-item">
-                <span id="minutes">0</span>
-                <p>Minutes</p>
-            </div>
-            <div class="countdown-item">
-                <span id="seconds">0</span>
-                <p>Seconds</p>
-            </div>
         </div>
     </section>
 

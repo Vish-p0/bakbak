@@ -2,7 +2,7 @@ PLACEHOLDER IMAGES GUIDE
 
 Please replace these placeholder files with your own images:
 
-1. hero-bg.jpg - Cover photo for the landing page (ideally a couple photo, high resolution)
+1. hero-bg.png - Cover photo for the landing page (ideally a couple photo, high resolution)
 
 2. Gallery photos:
    - placeholder1.jpg - Gallery photo 1
