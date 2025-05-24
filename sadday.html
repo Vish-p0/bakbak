@@ -6,6 +6,8 @@
     <title>For When You're Sad 💕</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/images/logos/logo.png">
+    <link rel="stylesheet" href="css/style.css">
     <style>
         :root {
             --primary-color: #f8bbd0;
@@ -28,37 +30,45 @@
             background-color: #fff5f8;
             overflow-x: hidden;
             text-align: center;
+            padding-top: 80px; /* Account for fixed navbar */
         }
         
-        .container {
+        .sad-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 1rem;
+            text-align: center;
         }
         
-        h1, h2 {
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1.5rem;
-        }
-        
-        h1 {
-            font-size: 3rem;
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .card {
+        .sad-card {
             background-color: var(--white);
             border-radius: 10px;
             box-shadow: var(--shadow);
             padding: 2rem;
             margin-bottom: 2rem;
             text-align: center;
+        }
+        
+        .sad-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .sad-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .sad-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
         
         .reasons {
@@ -74,11 +84,13 @@
             border-radius: 8px;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
         }
         
         .reason:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary-dark);
         }
         
         .meme-container {
@@ -142,7 +154,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            margin-bottom: 1.5rem;
+            margin: 0.5rem;
             box-shadow: var(--shadow);
         }
         
@@ -158,6 +170,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
+            margin-top: 2rem;
         }
         
         .back-link:hover {
@@ -204,7 +217,7 @@
         }
         
         @media (max-width: 768px) {
-            h1 {
+            .sad-title {
                 font-size: 2.5rem;
             }
             
@@ -216,24 +229,51 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hey Beautiful, I See You're Having a Tough Day 💕</h1>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                <img src="assets/images/logos/logo_name.png" alt="Logo" class="nav-logo">
+                <span class="love-text">I Love You</span>
+            </a>
+            <div class="audio-controls">
+                <button id="playPauseBtn" class="audio-btn">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="muteBtn" class="audio-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="50">
+            </div>
+        </div>
+        <!-- Hidden audio element -->
+        <audio id="backgroundMusic" loop preload="auto">
+            <source src="assets/audio/somewhere_only_we_know.mp3" type="audio/mpeg">
+            <source src="assets/audio/somewhere_only_we_know.ogg" type="audio/ogg">
+        </audio>
+    </nav>
+
+    <div class="sad-container">
+        <h1 class="sad-title">Hey Beautiful, I See You're Having a Tough Day 💕</h1>
         
-        <div class="card">
-            <p>I'm sorry you're feeling down. Remember that it's okay to not be okay sometimes, and I'm always here for you no matter what.</p>
-            <p>Here are a few things to remind you how special you are:</p>
+        <div class="sad-card">
+            <p class="sad-text">I'm sorry you're feeling down. Remember that it's okay to not be okay sometimes, and I'm always here for you no matter what.</p>
+            <p class="sad-text">Here are a few things to remind you how special you are:</p>
         </div>
         
-        <h2>Reasons Why You're Amazing</h2>
+        <h2 class="sad-subtitle">Reasons Why You're Amazing</h2>
         <div class="reasons">
             <div class="reason">You have the most beautiful soul I've ever known.</div>
             <div class="reason">Your strength in difficult situations is truly inspiring.</div>
             <div class="reason">You make everyone around you happier just by being you.</div>
             <div class="reason">You've accomplished so much already, and you're only getting started.</div>
             <div class="reason">The way your eyes light up when you're excited about something melts my heart.</div>
+            <div class="reason">Your laugh is the most beautiful sound in the world to me.</div>
+            <div class="reason">You're kind, caring, and incredibly thoughtful.</div>
+            <div class="reason">Even on your worst days, you're still amazing to me.</div>
         </div>
         
-        <h2>Some Memes to Make You Smile</h2>
+        <h2 class="sad-subtitle">Some Memes to Make You Smile</h2>
         <div class="meme-container">
             <div class="meme">
                 <img src="assets/images/meme1.jpg" alt="Funny Meme 1">
@@ -249,11 +289,105 @@
             </div>
         </div>
         
-        <h2>Need a Hug?</h2>
+        <h2 class="sad-subtitle">Need a Hug?</h2>
         <button id="hug-button" class="hug-button">Click For a BIG Virtual Hug 🤗</button>
         
-        <div class="card">
-            <p>If you need someone to talk to right now, I'm just a message away:</p>
+        <!-- Our Song Section -->
+        <div class="sad-card">
+            <h2 class="sad-subtitle">Our Song To Cheer You Up</h2>
+            <div class="music-player" style="margin: 0 auto; max-width: 320px;">
+                <div class="album-cover">
+                    <img src="assets/images/kavishka.jpg" alt="Every Little Thing She Does Is Magic">
+                </div>
+                
+                <div class="song-info">
+                    <div class="song-title">Every Little Thing She Does Is Magic</div>
+                    <div class="artist-name">Sleeping At Last</div>
+                </div>
+                
+                <div class="player-controls">
+                    <button class="control-btn heart-btn" id="heartBtn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="control-btn" id="prevBtn">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button class="control-btn play-btn" id="songPlayBtn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="control-btn" id="nextBtn">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                    <button class="control-btn" id="shuffleBtn">
+                        <i class="fas fa-random"></i>
+                    </button>
+                </div>
+                
+                <div class="progress-container">
+                    <span class="time-display" id="currentTime">0:00</span>
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="time-display" id="totalTime">0:00</span>
+                </div>
+                
+                <div class="volume-container">
+                    <i class="fas fa-volume-up volume-icon"></i>
+                    <input type="range" class="volume-bar" id="songVolumeSlider" min="0" max="100" value="70">
+                </div>
+                
+                <audio id="songAudio" preload="auto">
+                    <source src="assets/audio/every_little_thing_she_does_is_magic.m4a" type="audio/mp4">
+                    <source src="assets/audio/every_little_thing_she_does_is_magic.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+            
+            <!-- Simple lyrics display for sadday page -->
+            <div style="margin-top: 2rem; padding: 1rem; background: #f9f9f9; border-radius: 10px;">
+                <h3 style="margin-bottom: 1rem; color: var(--primary-dark);">Lyrics</h3>
+                <div class="lyrics" style="position: relative; min-height: auto;">
+                    <div class="lyrics-section active" id="lyricsSection1">
+                        <p>Though I tried before to tell her</p>
+                        <p>Of the feelings I have for her in my heart</p>
+                        <p>Every time that I come near her</p>
+                        <p>I just lose my nerve as I've done from the start</p>
+                        <p class="chorus">Every little thing she does is magic</p>
+                        <p class="chorus">Everything she does just turns me on</p>
+                        <p class="chorus">Even though my life before was tragic</p>
+                        <p class="chorus">Now I know my love for her goes on</p>
+                    </div>
+                    
+                    <div class="lyrics-section" id="lyricsSection2">
+                        <p>Do I have to tell the story</p>
+                        <p>Of a thousand rainy days since we first met</p>
+                        <p>It's a big enough umbrella</p>
+                        <p>But it's always me that ends up getting wet</p>
+                        <p class="chorus">Every little thing she does is magic</p>
+                        <p class="chorus">Everything she does just turns me on</p>
+                        <p class="chorus">Even though my life before was tragic</p>
+                        <p class="chorus">Now I know my love for her goes on</p>
+                    </div>
+                    
+                    <div class="lyrics-section" id="lyricsSection3">
+                        <p>I resolve to call her up</p>
+                        <p>A thousand times a day</p>
+                        <p>And ask her if she'll marry me</p>
+                        <p>In some old fashioned way</p>
+                        <p class="chorus">But my silent fears have gripped me</p>
+                        <p class="chorus">Long before I reach the phone</p>
+                        <p class="chorus">Long before my tongue has tripped me</p>
+                        <p class="chorus">Must I always be alone?</p>
+                        <p class="chorus">Every little thing she does is magic</p>
+                        <p class="chorus">Everything she does just turns me on</p>
+                        <p class="chorus">Even though my life before was tragic</p>
+                        <p class="chorus">Now I know my love for her goes on</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sad-card">
+            <p class="sad-text">If you need someone to talk to right now, I'm just a message away:</p>
             <a href="tel:+1234567890" class="contact-link">📞 Call Me</a>
             <a href="sms:+1234567890" class="contact-link">💬 Text Me</a>
         </div>
@@ -267,6 +401,7 @@
         </div>
     </div>
     
+    <script src="js/script.js"></script>
     <script>
         document.getElementById('hug-button').addEventListener('click', function() {
             const hugAnimation = document.getElementById('hug-animation');
@@ -290,6 +425,8 @@
             heart.style.top = `${Math.random() * 100}vh`;
             heart.style.opacity = '0';
             heart.style.transition = 'all 2s ease';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '999';
             heart.innerHTML = '❤️';
             
             document.body.appendChild(heart);

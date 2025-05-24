@@ -150,8 +150,113 @@ function createHeart() {
 // Gift Box Opening
 document.querySelectorAll('.gift-box').forEach(box => {
     box.addEventListener('click', function() {
+        const wasOpened = this.classList.contains('opened');
         this.classList.toggle('opened');
+        
+        // Trigger fireworks only when opening (not closing)
+        if (!wasOpened && this.classList.contains('opened')) {
+            createFireworks(this);
+        }
     });
+});
+
+// Create fireworks animation
+function createFireworks(giftBox) {
+    // Get the entire gifts section instead of individual gift box
+    const giftsSection = document.querySelector('.gifts-section');
+    const sectionRect = giftsSection.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    
+    // Create more fireworks spread across the entire section
+    for (let i = 0; i < 12; i++) {
+        setTimeout(() => {
+            createSingleFirework(sectionRect, scrollTop, scrollLeft, i + 1);
+        }, i * 100);
+    }
+}
+
+function createSingleFirework(sectionRect, scrollTop, scrollLeft, fireworkType) {
+    const firework = document.createElement('div');
+    firework.className = `firework firework-${(fireworkType % 4) + 1}`;
+    
+    // Position fireworks randomly across the entire section
+    const sectionLeft = sectionRect.left + scrollLeft;
+    const sectionTop = sectionRect.top + scrollTop;
+    const sectionWidth = sectionRect.width;
+    const sectionHeight = sectionRect.height;
+    
+    // Random position within the section bounds with some margin
+    const marginX = sectionWidth * 0.1; // 10% margin on each side
+    const marginY = sectionHeight * 0.2; // 20% margin on top/bottom
+    
+    const randomX = sectionLeft + marginX + Math.random() * (sectionWidth - 2 * marginX);
+    const randomY = sectionTop + marginY + Math.random() * (sectionHeight - 2 * marginY);
+    
+    firework.style.left = randomX + 'px';
+    firework.style.top = randomY + 'px';
+    
+    document.body.appendChild(firework);
+    
+    // Remove firework after animation completes
+    setTimeout(() => {
+        if (firework.parentNode) {
+            firework.remove();
+        }
+    }, 2000);
+}
+
+// Stitch Video Popup Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const stitchPlayBtn = document.getElementById('stitchPlayBtn');
+    const stitchVideoPopup = document.getElementById('stitchVideoPopup');
+    const stitchCloseBtn = document.getElementById('stitchCloseBtn');
+    const stitchVideo = document.getElementById('stitchVideo');
+    
+    if (stitchPlayBtn && stitchVideoPopup && stitchCloseBtn && stitchVideo) {
+        // Open video popup
+        stitchPlayBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent gift box from toggling
+            openStitchVideo();
+        });
+        
+        // Close video popup
+        stitchCloseBtn.addEventListener('click', function() {
+            closeStitchVideo();
+        });
+        
+        // Close popup when clicking outside content
+        stitchVideoPopup.addEventListener('click', function(e) {
+            if (e.target === stitchVideoPopup) {
+                closeStitchVideo();
+            }
+        });
+        
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && stitchVideoPopup.classList.contains('active')) {
+                closeStitchVideo();
+            }
+        });
+        
+        function openStitchVideo() {
+            stitchVideoPopup.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Reset video to beginning and pause
+            stitchVideo.currentTime = 0;
+            stitchVideo.load(); // Reload the video
+        }
+        
+        function closeStitchVideo() {
+            stitchVideoPopup.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            
+            // Pause and reset video
+            stitchVideo.pause();
+            stitchVideo.currentTime = 0;
+        }
+    }
 });
 
 // Polaroid Gallery - Image click for lightbox effect
@@ -301,22 +406,71 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Background Music Controls
 const backgroundMusic = document.getElementById('backgroundMusic');
+const playPauseBtn = document.getElementById('playPauseBtn');
 const muteBtn = document.getElementById('muteBtn');
 const volumeSlider = document.getElementById('volumeSlider');
 
 let isMuted = false;
+let isBackgroundPlaying = false;
 let previousVolume = 0.5;
 
 // Initialize audio settings
 if (backgroundMusic) {
     backgroundMusic.volume = 0.5; // Start at 50% volume
     
-    // Auto-play with user interaction (required by browsers)
-    document.addEventListener('click', function() {
-        if (backgroundMusic.paused) {
-            backgroundMusic.play().catch(e => console.log('Audio play failed:', e));
+    // Set initial button state to pause (expecting music to play)
+    if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    
+    // Try to auto-play immediately on page load
+    backgroundMusic.play().then(() => {
+        isBackgroundPlaying = true;
+        if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        console.log('Background music started automatically');
+    }).catch(e => {
+        console.log('Auto-play blocked, waiting for user interaction');
+        // Reset button to play state if auto-play failed
+        if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        
+        // If auto-play fails, start on first user interaction
+        function startMusicOnInteraction() {
+            // Only start background music if no song is currently playing and we haven't marked it as not playing
+            const songAudio = document.getElementById('songAudio');
+            const songIsPlaying = songAudio && !songAudio.paused;
+            
+            if (!isBackgroundPlaying && backgroundMusic.paused && !songIsPlaying) {
+                backgroundMusic.play().then(() => {
+                    isBackgroundPlaying = true;
+                    if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    console.log('Background music started on user interaction');
+                }).catch(err => console.log('Background music play failed:', err));
+            }
         }
-    }, { once: true });
+        
+        // Listen for various user interactions
+        document.addEventListener('click', startMusicOnInteraction, { once: true });
+        document.addEventListener('scroll', startMusicOnInteraction, { once: true });
+        document.addEventListener('mousemove', startMusicOnInteraction, { once: true });
+        document.addEventListener('touchstart', startMusicOnInteraction, { once: true });
+        document.addEventListener('keydown', startMusicOnInteraction, { once: true });
+    });
+}
+
+// Play/Pause functionality for background music
+if (playPauseBtn) {
+    playPauseBtn.addEventListener('click', function() {
+        if (backgroundMusic) {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play().then(() => {
+                    isBackgroundPlaying = true;
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(e => console.log('Background music play failed:', e));
+            } else {
+                backgroundMusic.pause();
+                isBackgroundPlaying = false;
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+    });
 }
 
 // Mute/Unmute functionality
@@ -369,9 +523,14 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
         if (backgroundMusic) {
             if (backgroundMusic.paused) {
-                backgroundMusic.play().catch(e => console.log('Audio play failed:', e));
+                backgroundMusic.play().then(() => {
+                    isBackgroundPlaying = true;
+                    if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(e => console.log('Background music play failed:', e));
             } else {
                 backgroundMusic.pause();
+                isBackgroundPlaying = false;
+                if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             }
         }
     }
@@ -441,4 +600,517 @@ document.addEventListener('DOMContentLoaded', function() {
 // Recreate emojis when window is resized
 window.addEventListener('resize', function() {
     setTimeout(createFloatingEmojis, 500);
-}); 
+});
+
+// Carousel Functionality
+let currentSlide = 0;
+const totalSlides = 15;
+
+function initializeCarousel() {
+    const carouselTrack = document.getElementById('carouselTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    if (!carouselTrack) return;
+    
+    function updateCarousel() {
+        // Move the track
+        const translateX = -(currentSlide * (100 / totalSlides));
+        carouselTrack.style.transform = `translateX(${translateX}%)`;
+        
+        // Update indicators
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentSlide);
+        });
+        
+        // Update slide classes
+        const slides = document.querySelectorAll('.carousel-slide');
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentSlide);
+        });
+    }
+    
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+    }
+    
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+    }
+    
+    function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateCarousel();
+    }
+    
+    // Event listeners
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+    }
+    
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => goToSlide(index));
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+    
+    // Auto-play (optional)
+    let autoPlay = setInterval(nextSlide, 5000);
+    
+    // Pause auto-play on hover
+    const carouselSection = document.querySelector('.months-carousel-section');
+    if (carouselSection) {
+        carouselSection.addEventListener('mouseenter', () => {
+            clearInterval(autoPlay);
+        });
+        
+        carouselSection.addEventListener('mouseleave', () => {
+            autoPlay = setInterval(nextSlide, 5000);
+        });
+    }
+    
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let endX = 0;
+    
+    carouselTrack.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+    
+    carouselTrack.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > 50) { // Minimum swipe distance
+            if (diff > 0) {
+                nextSlide(); // Swipe left = next
+            } else {
+                prevSlide(); // Swipe right = previous
+            }
+        }
+    });
+}
+
+// Initialize carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeCarousel);
+
+// Song Player Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const songAudio = document.getElementById('songAudio');
+    const songPlayBtn = document.getElementById('songPlayBtn');
+    const heartBtn = document.getElementById('heartBtn');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const currentTimeDisplay = document.getElementById('currentTime');
+    const totalTimeDisplay = document.getElementById('totalTime');
+    const songVolumeSlider = document.getElementById('songVolumeSlider');
+    
+    // Initialize lyrics display
+    function initializeLyrics() {
+        const section1 = document.getElementById('lyricsSection1');
+        const section2 = document.getElementById('lyricsSection2');
+        const section3 = document.getElementById('lyricsSection3');
+        
+        // Ensure only section 1 is active initially
+        [section1, section2, section3].forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        section1.classList.add('active');
+    }
+    
+    // Initialize lyrics on page load
+    initializeLyrics();
+    
+    if (songAudio && songPlayBtn) {
+        // Set initial volume
+        songAudio.volume = 0.7;
+        
+        // Add user interaction for audio loading
+        songAudio.load();
+        
+        // Track current lyrics section to avoid unnecessary updates
+        let currentLyricsSection = 1;
+        
+        // Play/Pause functionality with background music coordination
+        songPlayBtn.addEventListener('click', function() {
+            if (songAudio.paused) {
+                // Prevent background music from starting when song is played
+                isBackgroundPlaying = false;
+                
+                // Pause background music if it's playing
+                if (backgroundMusic && !backgroundMusic.paused) {
+                    backgroundMusic.pause();
+                    if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                }
+                
+                // Play the song
+                songAudio.play().then(() => {
+                    songPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(e => {
+                    console.log('Song play failed:', e);
+                    // Try to load and play again
+                    songAudio.load();
+                    setTimeout(() => {
+                        songAudio.play().then(() => {
+                            songPlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                        }).catch(err => console.log('Song play failed again:', err));
+                    }, 500);
+                });
+            } else {
+                songAudio.pause();
+                songPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+        
+        // Heart button toggle
+        if (heartBtn) {
+            heartBtn.addEventListener('click', function() {
+                const heartIcon = heartBtn.querySelector('i');
+                if (heartIcon.classList.contains('far')) {
+                    heartIcon.classList.remove('far');
+                    heartIcon.classList.add('fas');
+                    heartBtn.classList.add('active');
+                } else {
+                    heartIcon.classList.remove('fas');
+                    heartIcon.classList.add('far');
+                    heartBtn.classList.remove('active');
+                }
+            });
+        }
+        
+        // Update progress bar and time
+        songAudio.addEventListener('timeupdate', function() {
+            if (songAudio.duration) {
+                const progress = (songAudio.currentTime / songAudio.duration) * 100;
+                progressFill.style.width = progress + '%';
+                
+                // Update time displays
+                currentTimeDisplay.textContent = formatTime(songAudio.currentTime);
+                totalTimeDisplay.textContent = formatTime(songAudio.duration);
+                
+                // Update lyrics based on time
+                updateLyricsSection(songAudio.currentTime);
+            }
+        });
+        
+        // Function to update lyrics sections based on current time
+        function updateLyricsSection(currentTime) {
+            const section1 = document.getElementById('lyricsSection1');
+            const section2 = document.getElementById('lyricsSection2');
+            const section3 = document.getElementById('lyricsSection3');
+            
+            // Only process if song is playing
+            if (!songAudio.paused) {
+                let targetSection;
+                
+                // Determine which section should be active based on time
+                if (currentTime >= 0 && currentTime < 62) {
+                    targetSection = 1;
+                } else if (currentTime >= 62 && currentTime < 94.8) {
+                    targetSection = 2;
+                } else if (currentTime >= 94.8 && currentTime < 196) {
+                    targetSection = 3;
+                } else {
+                    targetSection = 1;
+                }
+                
+                // Only update if section has changed
+                if (targetSection !== currentLyricsSection) {
+                    currentLyricsSection = targetSection;
+                    
+                    // Remove active and animating classes from all sections
+                    const allSections = [section1, section2, section3];
+                    allSections.forEach(section => {
+                        section.classList.remove('active', 'animating');
+                    });
+                    
+                    // Small delay to ensure reset is applied
+                    setTimeout(() => {
+                        let activeSection;
+                        
+                        // Set the active section based on target
+                        if (targetSection === 1) {
+                            activeSection = section1;
+                        } else if (targetSection === 2) {
+                            activeSection = section2;
+                        } else {
+                            activeSection = section3;
+                        }
+                        
+                        // Add active and animating classes for staggered animation
+                        activeSection.classList.add('active', 'animating');
+                    }, 50);
+                }
+            }
+        }
+        
+        // Reset to first section when song stops
+        songAudio.addEventListener('pause', function() {
+            currentLyricsSection = 1;
+            setTimeout(() => {
+                initializeLyrics();
+            }, 100);
+        });
+        
+        // Progress bar click to seek
+        if (progressBar) {
+            progressBar.addEventListener('click', function(e) {
+                const rect = progressBar.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                if (songAudio.duration) {
+                    songAudio.currentTime = percent * songAudio.duration;
+                }
+            });
+        }
+        
+        // Volume control
+        if (songVolumeSlider) {
+            songVolumeSlider.addEventListener('input', function() {
+                songAudio.volume = this.value / 100;
+            });
+        }
+        
+        // Reset play button when song ends and resume background music
+        songAudio.addEventListener('ended', function() {
+            songPlayBtn.innerHTML = '<i class="fas fa-play"></i>';
+            progressFill.style.width = '0%';
+            songAudio.currentTime = 0;
+            currentLyricsSection = 1;
+            
+            // Reset to first lyrics section
+            initializeLyrics();
+            
+            // Resume background music when song ends
+            if (backgroundMusic && backgroundMusic.paused) {
+                backgroundMusic.play().then(() => {
+                    isBackgroundPlaying = true;
+                    if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(e => console.log('Background music resume failed:', e));
+            }
+        });
+        
+        // Set total time when metadata loads
+        songAudio.addEventListener('loadedmetadata', function() {
+            totalTimeDisplay.textContent = formatTime(songAudio.duration);
+        });
+        
+        // Handle audio loading errors
+        songAudio.addEventListener('error', function(e) {
+            console.log('Song audio error:', e);
+            console.log('Audio source:', songAudio.src);
+        });
+        
+        // Log when audio is ready to play
+        songAudio.addEventListener('canplaythrough', function() {
+            console.log('Song audio loaded successfully');
+        });
+    }
+    
+    // Format time helper function
+    function formatTime(seconds) {
+        if (isNaN(seconds)) return '0:00';
+        
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = Math.floor(seconds % 60);
+        return minutes + ':' + (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+    }
+});
+
+// Floating Hearts for Song Section
+function createSongFloatingHearts() {
+    const songSection = document.querySelector('.song-section');
+    if (!songSection) return;
+    
+    const hearts = ['💕', '❤️', '💖', '💝', '💘', '🩷'];
+    const patterns = ['heart-pattern-1', 'heart-pattern-2', 'heart-pattern-3'];
+    
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('song-floating-heart');
+        
+        // Assign random pattern
+        const randomPattern = patterns[Math.floor(Math.random() * patterns.length)];
+        heart.classList.add(randomPattern);
+        
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        
+        // Random position within the song section
+        heart.style.left = Math.random() * 90 + 5 + '%'; // 5% to 95%
+        heart.style.top = Math.random() * 80 + 10 + '%'; // 10% to 90%
+        
+        // Random size variation
+        const size = Math.random() * 0.8 + 1.2; // 1.2rem to 2rem
+        heart.style.fontSize = size + 'rem';
+        
+        // Random animation delay
+        heart.style.animationDelay = Math.random() * 8 + 's';
+        
+        songSection.appendChild(heart);
+    }
+    
+    // Create hearts distributed throughout the section
+    function populateHearts() {
+        // Clear existing hearts
+        const existingHearts = songSection.querySelectorAll('.song-floating-heart');
+        existingHearts.forEach(heart => heart.remove());
+        
+        // Create 15 hearts for the song section
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => createHeart(), i * 300);
+        }
+    }
+    
+    // Initial population
+    populateHearts();
+    
+    // Add new hearts periodically to maintain density
+    setInterval(() => {
+        if (songSection.querySelectorAll('.song-floating-heart').length < 12) {
+            createHeart();
+        }
+    }, 4000);
+}
+
+// Start floating hearts when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(createSongFloatingHearts, 1500); // Start after 1.5 seconds
+});
+
+// Flower Surprise Popup Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const flowerSurpriseBtn = document.getElementById('flowerSurpriseBtn');
+    const flowerPopup = document.getElementById('flowerPopup');
+    
+    if (flowerSurpriseBtn && flowerPopup) {
+        // Open flower popup
+        flowerSurpriseBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent gift box from toggling
+            openFlowerPopup();
+        });
+        
+        // Close popup when clicking outside content (optional)
+        flowerPopup.addEventListener('click', function(e) {
+            if (e.target === flowerPopup) {
+                closeFlowerPopup();
+            }
+        });
+        
+        // Close popup with Escape key (optional)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && flowerPopup.classList.contains('active')) {
+                closeFlowerPopup();
+            }
+        });
+        
+        function openFlowerPopup() {
+            flowerPopup.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            // Start floating flowers animation
+            createFloatingFlowers();
+            
+            // Auto-close after 5 seconds
+            setTimeout(() => {
+                closeFlowerPopup();
+            }, 5000);
+        }
+        
+        function closeFlowerPopup() {
+            flowerPopup.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+            
+            // Remove all floating flowers
+            const flowers = document.querySelectorAll('.floating-flower');
+            flowers.forEach(flower => flower.remove());
+        }
+    }
+});
+
+// Create floating flowers animation
+function createFloatingFlowers() {
+    const flowerEmojis = ['🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '💐', '🏵️', '🌿', '🍀', '🌱', '🌾', '🪻', '🌵', '🪴'];
+    const patterns = ['flower-pattern-1', 'flower-pattern-2', 'flower-pattern-3', 'flower-pattern-4', 'flower-pattern-5'];
+    
+    // Create 40 flowers for full screen coverage
+    for (let i = 0; i < 40; i++) {
+        setTimeout(() => {
+            createSingleFlower(flowerEmojis, patterns);
+        }, i * 100);
+    }
+    
+    // Continue creating flowers while popup is open
+    const flowerInterval = setInterval(() => {
+        const flowerPopup = document.getElementById('flowerPopup');
+        if (flowerPopup && flowerPopup.classList.contains('active')) {
+            // Only add new flowers if there are less than 50 on screen
+            const currentFlowers = document.querySelectorAll('.floating-flower');
+            if (currentFlowers.length < 50) {
+                createSingleFlower(flowerEmojis, patterns);
+            }
+        } else {
+            clearInterval(flowerInterval);
+        }
+    }, 300);
+}
+
+function createSingleFlower(flowerEmojis, patterns) {
+    const flower = document.createElement('div');
+    flower.classList.add('floating-flower');
+    
+    // Assign random pattern
+    const randomPattern = patterns[Math.floor(Math.random() * patterns.length)];
+    flower.classList.add(randomPattern);
+    
+    // Assign random flower emoji
+    flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+    
+    // Random position across the popup screen area
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    
+    // Position flowers randomly across the popup area
+    flower.style.left = Math.random() * viewportWidth + 'px';
+    flower.style.top = Math.random() * viewportHeight + 'px';
+    
+    // Random size variation
+    const size = Math.random() * 1.5 + 1.5; // 1.5rem to 3rem
+    flower.style.fontSize = size + 'rem';
+    
+    // Random animation delay
+    flower.style.animationDelay = Math.random() * 2 + 's';
+    
+    // Random animation duration
+    flower.style.animationDuration = (Math.random() * 3 + 3) + 's'; // 3-6 seconds
+    
+    // Random opacity
+    flower.style.opacity = Math.random() * 0.4 + 0.6; // 0.6 to 1.0
+    
+    // Append to the popup instead of document body
+    const flowerPopup = document.getElementById('flowerPopup');
+    if (flowerPopup) {
+        flowerPopup.appendChild(flower);
+    }
+    
+    // Remove flower after 5 seconds (when popup closes)
+    setTimeout(() => {
+        if (flower.parentNode) {
+            flower.remove();
+        }
+    }, 5500);
+} 

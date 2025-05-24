@@ -18,6 +18,9 @@
                 <span class="love-text">I Love You</span>
             </a>
             <div class="audio-controls">
+                <button id="playPauseBtn" class="audio-btn">
+                    <i class="fas fa-play"></i>
+                </button>
                 <button id="muteBtn" class="audio-btn">
                     <i class="fas fa-volume-up"></i>
                 </button>
@@ -224,45 +227,253 @@
         </div>
     </section>
 
+    <!-- Us Through the Months Carousel -->
+    <section id="months-carousel" class="months-carousel-section">
+        <h2>Us Through the Months</h2>
+        <div class="carousel-container">
+            <button class="carousel-btn carousel-btn-prev" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide active">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide1.png" alt="Before">
+                            <div class="slide-content">
+                                <h3>Before</h3>
+                                <p>Life before you came into my world</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide2.png" alt="The Beginning">
+                            <div class="slide-content">
+                                <h3>The Beginning</h3>
+                                <p>When our story first started</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide3.png" alt="Month 1">
+                            <div class="slide-content">
+                                <h3>Month 1</h3>
+                                <p>Our beautiful first month together</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide4.png" alt="Month 2">
+                            <div class="slide-content">
+                                <h3>Month 2</h3>
+                                <p>Growing closer every day</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide5.png" alt="Month 3">
+                            <div class="slide-content">
+                                <h3>Month 3</h3>
+                                <p>Adventures and memories</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide6.png" alt="Month 4">
+                            <div class="slide-content">
+                                <h3>Month 4</h3>
+                                <p>Building our love story</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide7.png" alt="Month 5">
+                            <div class="slide-content">
+                                <h3>Month 5</h3>
+                                <p>Love growing stronger</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide8.png" alt="Month 6">
+                            <div class="slide-content">
+                                <h3>Month 6</h3>
+                                <p>Half a year of happiness</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide9.png" alt="Month 7">
+                            <div class="slide-content">
+                                <h3>Month 7</h3>
+                                <p>Summer of love</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide10.png" alt="Month 8">
+                            <div class="slide-content">
+                                <h3>Month 8</h3>
+                                <p>Beautiful moments together</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide11.png" alt="Month 9">
+                            <div class="slide-content">
+                                <h3>Month 9</h3>
+                                <p>Autumn adventures</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide12.png" alt="Month 10">
+                            <div class="slide-content">
+                                <h3>Month 10</h3>
+                                <p>Creating lasting memories</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide13.png" alt="Month 11">
+                            <div class="slide-content">
+                                <h3>Month 11</h3>
+                                <p>Almost a full year</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide14.png" alt="1 Year">
+                            <div class="slide-content">
+                                <h3>1 Year</h3>
+                                <p>Celebrating our first year together</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-card">
+                            <img src="assets/images/slides/slide15.png" alt="Forever">
+                            <div class="slide-content">
+                                <h3>Forever</h3>
+                                <p>Our love will last for eternity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-btn carousel-btn-next" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="carousel-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+            <span class="indicator" data-slide="4"></span>
+            <span class="indicator" data-slide="5"></span>
+            <span class="indicator" data-slide="6"></span>
+            <span class="indicator" data-slide="7"></span>
+            <span class="indicator" data-slide="8"></span>
+            <span class="indicator" data-slide="9"></span>
+            <span class="indicator" data-slide="10"></span>
+            <span class="indicator" data-slide="11"></span>
+            <span class="indicator" data-slide="12"></span>
+            <span class="indicator" data-slide="13"></span>
+            <span class="indicator" data-slide="14"></span>
+        </div>
+    </section>
+
     <!-- Memory Scrapbook / Gallery Section -->
     <section id="gallery" class="gallery-section">
         <h2>Our Favorite Memories</h2>
         <div class="polaroid-container">
             <div class="polaroid">
                 <div class="polaroid-img">
-                    <img src="assets/images/placeholder1.jpg" alt="Memory 1">
+                    <img src="assets/images/moments/Moment1.jpg" alt="First Picture Together">
                 </div>
-                <p class="caption">[Date] - Our first selfie together</p>
+                <p class="caption">First Picture Together</p>
             </div>
             <div class="polaroid">
                 <div class="polaroid-img">
-                    <img src="assets/images/placeholder2.jpg" alt="Memory 2">
+                    <img src="assets/images/moments/Moment2.jpg" alt="Day It All Started">
                 </div>
-                <p class="caption">[Date] - That sunset picnic</p>
+                <p class="caption">Day It All Started</p>
             </div>
             <div class="polaroid">
                 <div class="polaroid-img">
-                    <img src="assets/images/placeholder3.jpg" alt="Memory 3">
+                    <img src="assets/images/moments/Moment3.jpg" alt="First Date">
                 </div>
-                <p class="caption">[Date] - Beach day adventures</p>
+                <p class="caption">First Date</p>
             </div>
             <div class="polaroid">
                 <div class="polaroid-img">
-                    <img src="assets/images/placeholder4.jpg" alt="Memory 4">
+                    <img src="assets/images/moments/Moment4.jpg" alt="Lotus Tower Date">
                 </div>
-                <p class="caption">[Date] - Dancing in the rain</p>
+                <p class="caption">Lotus Tower Date</p>
             </div>
             <div class="polaroid">
                 <div class="polaroid-img">
-                    <img src="assets/images/placeholder5.jpg" alt="Memory 5">
+                    <img src="assets/images/moments/Moment5.jpg" alt="Best Christmas Yet">
                 </div>
-                <p class="caption">[Date] - Movie night cuddles</p>
+                <p class="caption">Best Christmas Yet</p>
             </div>
             <div class="polaroid">
                 <div class="polaroid-img">
-                    <img src="assets/images/placeholder6.jpg" alt="Memory 6">
+                    <img src="assets/images/moments/Moment6.jpg" alt="Lantern Festival">
                 </div>
-                <p class="caption">[Date] - Coffee date mornings</p>
+                <p class="caption">Lantern Festival</p>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/moments/Moment7.jpg" alt="My Favorite Picture">
+                </div>
+                <p class="caption">My Favorite Picture</p>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/moments/Moment8.jpg" alt="Us At The Beach">
+                </div>
+                <p class="caption">Us At The Beach</p>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/moments/Moment9.jpg" alt="Sliit Got Talent">
+                </div>
+                <p class="caption">Sliit Got Talent</p>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/moments/Moment10.jpg" alt="Us And Stitch">
+                </div>
+                <p class="caption">Us And Stitch</p>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/moments/Moment11.jpg" alt="Your Favorite Picture">
+                </div>
+                <p class="caption">Your Favorite Picture</p>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-img">
+                    <img src="assets/images/moments/Moment12.jpg" alt="Monopoly Date">
+                </div>
+                <p class="caption">Monopoly Date</p>
             </div>
         </div>
     </section>
@@ -298,35 +509,116 @@
     <!-- Our Song Section -->
     <section id="song" class="song-section">
         <h2>Our Song</h2>
-        <div class="music-player">
-            <iframe src="https://open.spotify.com/embed/track/REPLACE_WITH_SPOTIFY_TRACK_ID" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </div>
-        <div class="lyrics">
-            <p>Add your special song lyrics here...</p>
-        </div>
-    </section>
-
-    <!-- Quiz Section -->
-    <section id="quiz" class="quiz-section">
-        <h2>How Well Do You Know Us?</h2>
-        <div class="quiz-container">
-            <div class="quiz-question" data-question="1">
-                <h3>Question 1: Where was our first date?</h3>
-                <div class="options">
-                    <button class="option" data-correct="false">Option A</button>
-                    <button class="option" data-correct="true">Option B</button>
-                    <button class="option" data-correct="false">Option C</button>
+        <div class="song-container">
+            <div class="music-player">
+                <div class="album-cover">
+                    <img src="assets/images/kavishka.jpg" alt="Every Little Thing She Does Is Magic">
                 </div>
-                <div class="feedback correct">That's right! 💖</div>
-                <div class="feedback incorrect">Hmm, try again! 😘</div>
+                
+                <div class="song-info">
+                    <div class="song-title">Every Little Thing She Does Is Magic</div>
+                    <div class="artist-name">Sleeping At Last</div>
+                </div>
+                
+                <div class="player-controls">
+                    <button class="control-btn heart-btn" id="heartBtn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="control-btn" id="prevBtn">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button class="control-btn play-btn" id="songPlayBtn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="control-btn" id="nextBtn">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                    <button class="control-btn" id="shuffleBtn">
+                        <i class="fas fa-random"></i>
+                    </button>
+                </div>
+                
+                <div class="progress-container">
+                    <span class="time-display" id="currentTime">0:00</span>
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="time-display" id="totalTime">0:00</span>
+                </div>
+                
+                <div class="volume-container">
+                    <i class="fas fa-volume-up volume-icon"></i>
+                    <input type="range" class="volume-bar" id="songVolumeSlider" min="0" max="100" value="70">
+                </div>
+                
+                <audio id="songAudio" preload="auto">
+                    <source src="assets/audio/every_little_thing_she_does_is_magic.m4a" type="audio/mp4">
+                    <source src="assets/audio/every_little_thing_she_does_is_magic.mp3" type="audio/mpeg">
+                </audio>
             </div>
-            <!-- Add more questions similar to above -->
+            
+            <div class="lyrics-container">
+                <h3>Lyrics</h3>
+                <div class="lyrics">
+                    <div class="lyrics-section active" id="lyricsSection1">
+                        <p>Though I tried before to tell her</p>
+                        <p>Of the feelings I have for her</p>
+                        <p>In my heart</p>
+                        <p>Every time that I come near her</p>
+                        <p>I just lose my nerve</p>
+                        <p>As I've done from the start</p>
+                        <p class="chorus">Every little thing she does is magic</p>
+                        <p class="chorus">Everything she does just turns me on</p>
+                        <p class="chorus">Even though my life before was tragic</p>
+                        <p class="chorus">Now I know my love for her goes on</p>
+                    </div>
+                    
+                    <div class="lyrics-section" id="lyricsSection2">
+                        <p>Do I have to tell the story</p>
+                        <p>Of a thousand rainy days</p>
+                        <p>Since we first met</p>
+                        <p>It's a big enough umbrella</p>
+                        <p>But it's always me</p>
+                        <p>That ends up getting wet</p>
+                        <p class="chorus">Every little thing she does is magic</p>
+                        <p class="chorus">Everything she does just turns me on</p>
+                        <p class="chorus">Even though my life before was tragic</p>
+                        <p class="chorus">Now I know my love for her goes on</p>
+                    </div>
+                    
+                    <div class="lyrics-section" id="lyricsSection3">
+                        <p>I resolve to call her up</p>
+                        <p>A thousand times a day</p>
+                        <p>And ask her if she'll marry me</p>
+                        <p>In some old-fashioned way</p>
+                        <p>But my silent fears have gripped me</p>
+                        <p>Long before I reach the phone</p>
+                        <p>Long before my tongue has tripped me</p>
+                        <p>Must I always be alone?</p>
+                        <p class="chorus">Every little thing she does is magic</p>
+                        <p class="chorus">Everything she does turns me on</p>
+                        <p class="chorus">Even though my life before was tragic</p>
+                        <p class="chorus">Now I know my love for her goes on</p>
+                        <p class="chorus">Every little things she does is magic</p>
+                        <p class="chorus">Everything she does just turns me on</p>
+                        <p class="chorus">Even though my life before was tragic</p>
+                        <p class="chorus">Now I know my love for her goes on</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button id="restart-quiz" class="restart-button">Restart Quiz</button>
     </section>
 
     <!-- Compliment Generator -->
     <section id="compliments" class="compliments-section">
+        <!-- Floating Hearts -->
+        <div class="compliments-floating-heart heart-1">💖</div>
+        <div class="compliments-floating-heart heart-2">💕</div>
+        <div class="compliments-floating-heart heart-3">💝</div>
+        <div class="compliments-floating-heart heart-4">💗</div>
+        <div class="compliments-floating-heart heart-5">💓</div>
+        <div class="compliments-floating-heart heart-6">💞</div>
+        
         <h2>Reasons Why I Love You</h2>
         <div class="compliment-container">
             <p id="compliment-text">Click the button to see why I love you! 💕</p>
@@ -336,33 +628,49 @@
 
     <!-- Virtual Gift Section -->
     <section id="gifts" class="gifts-section">
+        <!-- Floating Hearts -->
+        <div class="gifts-floating-heart gifts-heart-1">💖</div>
+        <div class="gifts-floating-heart gifts-heart-2">💕</div>
+        <div class="gifts-floating-heart gifts-heart-3">💝</div>
+        <div class="gifts-floating-heart gifts-heart-4">💗</div>
+        <div class="gifts-floating-heart gifts-heart-5">💓</div>
+        <div class="gifts-floating-heart gifts-heart-6">💞</div>
+        <div class="gifts-floating-heart gifts-heart-7">💘</div>
+        <div class="gifts-floating-heart gifts-heart-8">🩷</div>
+        
         <h2>Special Surprises</h2>
         <div class="gifts-container">
             <div class="gift-box" data-gift="playlist">
+                <div class="ribbon-bow"></div>
                 <div class="gift-box-lid"></div>
                 <div class="gift-box-container"></div>
                 <div class="gift-content">
                     <h3>A Playlist Just For You</h3>
-                    <p>Songs that remind me of us 🎵</p>
-                    <a href="#" class="gift-link">Click to Open</a>
+                    <p>Songs that remind me of you 🎵</p>
+                    <a href="https://open.spotify.com/playlist/7wsJOLfk9kF26YGEIdaWmN?si=a225de98f5b14999" class="gift-link">Click to Open</a>
                 </div>
             </div>
             <div class="gift-box" data-gift="letter">
+                <div class="ribbon-bow"></div>
                 <div class="gift-box-lid"></div>
                 <div class="gift-box-container"></div>
                 <div class="gift-content">
-                    <h3>A Letter From The Future</h3>
-                    <p>Read this on our 5th anniversary 💌</p>
-                    <a href="#" class="gift-link">Click to Open</a>
+                    <h3>Click for a surprise</h3>
+                    <button class="flower-surprise-btn" id="flowerSurpriseBtn">💐❤️</button>
                 </div>
             </div>
             <div class="gift-box" data-gift="date">
+                <div class="ribbon-bow"></div>
                 <div class="gift-box-lid"></div>
                 <div class="gift-box-container"></div>
                 <div class="gift-content">
-                    <h3>Our Next Adventure</h3>
-                    <p>A special date planned just for you ✨</p>
-                    <a href="#" class="gift-link">Click to Open</a>
+                    <div class="stitch-container">
+                        <img src="assets/images/stitch.png" alt="Stitch" class="stitch-image">
+                        <button class="stitch-play-btn" id="stitchPlayBtn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    <p>Something special!💙</p>
                 </div>
             </div>
         </div>
@@ -376,8 +684,33 @@
     <!-- Footer -->
     <footer>
         <p>Made with love for you, always and forever 💖</p>
-        <p class="copyright">© [Year]</p>
+        <p class="copyright">© 2025</p>
     </footer>
+
+    <!-- Stitch Video Popup -->
+    <div id="stitchVideoPopup" class="stitch-popup">
+        <div class="stitch-popup-content">
+            <div class="stitch-popup-header">
+                <h2>Here's a surprise stitch moment</h2>
+                <button class="stitch-close-btn" id="stitchCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="stitch-video-container">
+                <video id="stitchVideo" controls>
+                    <source src="assets/videos/stitch.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flower Surprise Popup -->
+    <div id="flowerPopup" class="flower-popup">
+        <div class="flower-popup-content">
+            <img src="assets/images/boquet.jpeg" alt="Beautiful Bouquet" id="bouquetImage" class="bouquet-center-image">
+        </div>
+    </div>
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="js/script.js"></script>
