@@ -33,6 +33,12 @@
             padding-top: 80px; /* Account for fixed navbar */
         }
         
+        /* Navbar Background for Sad Day Page */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
         .sad-container {
             max-width: 800px;
             margin: 0 auto;
@@ -226,6 +232,151 @@
                 height: 150px;
             }
         }
+        
+        /* Floating Emojis for Sad Day Page */
+        .floating-emoji {
+            position: fixed;
+            font-size: 1.8rem;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+        
+        .floating-emoji.pattern-1 {
+            animation: floatPattern1 16s infinite ease-in-out;
+        }
+        
+        .floating-emoji.pattern-2 {
+            animation: floatPattern2 18s infinite ease-in-out;
+        }
+        
+        .floating-emoji.pattern-3 {
+            animation: floatPattern3 20s infinite ease-in-out;
+        }
+        
+        .floating-emoji.pattern-4 {
+            animation: floatPattern4 22s infinite ease-in-out;
+        }
+        
+        .floating-emoji.pattern-5 {
+            animation: floatPattern5 24s infinite ease-in-out;
+        }
+        
+        .floating-emoji.pattern-6 {
+            animation: floatPattern6 19s infinite ease-in-out;
+        }
+        
+        @keyframes floatPattern1 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate(50px, -60px) rotate(15deg) scale(1.2);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-30px, -120px) rotate(-8deg) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translate(70px, -80px) rotate(20deg) scale(1.1);
+                opacity: 0.5;
+            }
+        }
+        
+        @keyframes floatPattern2 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.4;
+            }
+            33% {
+                transform: translate(-80px, 50px) rotate(-18deg) scale(1.3);
+                opacity: 0.7;
+            }
+            66% {
+                transform: translate(60px, -70px) rotate(12deg) scale(0.8);
+                opacity: 0.5;
+            }
+        }
+        
+        @keyframes floatPattern3 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            20% {
+                transform: translate(40px, -50px) rotate(8deg) scale(1.1);
+                opacity: 0.5;
+            }
+            40% {
+                transform: translate(-60px, -100px) rotate(-15deg) scale(0.95);
+                opacity: 0.4;
+            }
+            60% {
+                transform: translate(80px, -130px) rotate(25deg) scale(1.2);
+                opacity: 0.6;
+            }
+            80% {
+                transform: translate(-40px, -60px) rotate(-10deg) scale(0.9);
+                opacity: 0.4;
+            }
+        }
+        
+        @keyframes floatPattern4 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translate(-100px, -80px) rotate(-20deg) scale(1.25);
+                opacity: 0.7;
+            }
+        }
+        
+        @keyframes floatPattern5 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            16.66% {
+                transform: translate(30px, -40px) rotate(6deg) scale(1.05);
+                opacity: 0.5;
+            }
+            33.33% {
+                transform: translate(-50px, -80px) rotate(-12deg) scale(0.9);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translate(70px, -120px) rotate(18deg) scale(1.3);
+                opacity: 0.6;
+            }
+            66.66% {
+                transform: translate(-30px, -90px) rotate(-8deg) scale(0.85);
+                opacity: 0.4;
+            }
+            83.33% {
+                transform: translate(50px, -50px) rotate(14deg) scale(1.15);
+                opacity: 0.5;
+            }
+        }
+        
+        @keyframes floatPattern6 {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            30% {
+                transform: translate(-70px, 40px) rotate(-15deg) scale(1.2);
+                opacity: 0.6;
+            }
+            70% {
+                transform: translate(50px, -90px) rotate(18deg) scale(0.8);
+                opacity: 0.4;
+            }
+        }
     </style>
 </head>
 <body>
@@ -248,8 +399,8 @@
         </div>
         <!-- Hidden audio element -->
         <audio id="backgroundMusic" loop preload="auto">
-            <source src="assets/audio/somewhere_only_we_know.mp3" type="audio/mpeg">
-            <source src="assets/audio/somewhere_only_we_know.ogg" type="audio/ogg">
+            <source src="assets/audio/as_long_as_you_love_me.mp3" type="audio/mpeg">
+            <source src="assets/audio/as_long_as_you_love_me.ogg" type="audio/ogg">
         </audio>
     </nav>
 
@@ -276,120 +427,47 @@
         <h2 class="sad-subtitle">Some Memes to Make You Smile</h2>
         <div class="meme-container">
             <div class="meme">
-                <img src="assets/images/meme1.jpg" alt="Funny Meme 1">
+                <img src="assets/images/meme1.jpeg" alt="Funny Meme 1">
             </div>
             <div class="meme">
-                <img src="assets/images/meme2.jpg" alt="Funny Meme 2">
+                <img src="assets/images/meme2.jpeg" alt="Funny Meme 2">
             </div>
             <div class="meme">
-                <img src="assets/images/meme3.jpg" alt="Funny Meme 3">
+                <img src="assets/images/meme3.jpeg" alt="Funny Meme 3">
             </div>
             <div class="meme">
-                <img src="assets/images/meme4.jpg" alt="Funny Meme 4">
+                <img src="assets/images/meme4.jpeg" alt="Funny Meme 4">
+            </div>
+            <div class="meme">
+                <img src="assets/images/meme5.jpeg" alt="Funny Meme 4">
+            </div>
+            <div class="meme">
+                <img src="assets/images/meme6.jpeg" alt="Funny Meme 1">
+            </div>
+            <div class="meme">
+                <img src="assets/images/meme7.jpeg" alt="Funny Meme 2">
+            </div>
+            <div class="meme">
+                <img src="assets/images/meme8.jpeg" alt="Funny Meme 3">
+            </div>
+            <div class="meme">
+                <img src="assets/images/meme9.jpeg" alt="Funny Meme 4">
+            </div>
+            <div class="meme">
+                <img src="assets/images/meme10.jpeg" alt="Funny Meme 4">
+            </div>
+             <div class="meme">
+                <img src="assets/images/meme11.jpeg" alt="Funny Meme 4">
             </div>
         </div>
         
         <h2 class="sad-subtitle">Need a Hug?</h2>
         <button id="hug-button" class="hug-button">Click For a BIG Virtual Hug 🤗</button>
         
-        <!-- Our Song Section -->
-        <div class="sad-card">
-            <h2 class="sad-subtitle">Our Song To Cheer You Up</h2>
-            <div class="music-player" style="margin: 0 auto; max-width: 320px;">
-                <div class="album-cover">
-                    <img src="assets/images/kavishka.jpg" alt="Every Little Thing She Does Is Magic">
-                </div>
-                
-                <div class="song-info">
-                    <div class="song-title">Every Little Thing She Does Is Magic</div>
-                    <div class="artist-name">Sleeping At Last</div>
-                </div>
-                
-                <div class="player-controls">
-                    <button class="control-btn heart-btn" id="heartBtn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="control-btn" id="prevBtn">
-                        <i class="fas fa-step-backward"></i>
-                    </button>
-                    <button class="control-btn play-btn" id="songPlayBtn">
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <button class="control-btn" id="nextBtn">
-                        <i class="fas fa-step-forward"></i>
-                    </button>
-                    <button class="control-btn" id="shuffleBtn">
-                        <i class="fas fa-random"></i>
-                    </button>
-                </div>
-                
-                <div class="progress-container">
-                    <span class="time-display" id="currentTime">0:00</span>
-                    <div class="progress-bar" id="progressBar">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
-                    <span class="time-display" id="totalTime">0:00</span>
-                </div>
-                
-                <div class="volume-container">
-                    <i class="fas fa-volume-up volume-icon"></i>
-                    <input type="range" class="volume-bar" id="songVolumeSlider" min="0" max="100" value="70">
-                </div>
-                
-                <audio id="songAudio" preload="auto">
-                    <source src="assets/audio/every_little_thing_she_does_is_magic.m4a" type="audio/mp4">
-                    <source src="assets/audio/every_little_thing_she_does_is_magic.mp3" type="audio/mpeg">
-                </audio>
-            </div>
-            
-            <!-- Simple lyrics display for sadday page -->
-            <div style="margin-top: 2rem; padding: 1rem; background: #f9f9f9; border-radius: 10px;">
-                <h3 style="margin-bottom: 1rem; color: var(--primary-dark);">Lyrics</h3>
-                <div class="lyrics" style="position: relative; min-height: auto;">
-                    <div class="lyrics-section active" id="lyricsSection1">
-                        <p>Though I tried before to tell her</p>
-                        <p>Of the feelings I have for her in my heart</p>
-                        <p>Every time that I come near her</p>
-                        <p>I just lose my nerve as I've done from the start</p>
-                        <p class="chorus">Every little thing she does is magic</p>
-                        <p class="chorus">Everything she does just turns me on</p>
-                        <p class="chorus">Even though my life before was tragic</p>
-                        <p class="chorus">Now I know my love for her goes on</p>
-                    </div>
-                    
-                    <div class="lyrics-section" id="lyricsSection2">
-                        <p>Do I have to tell the story</p>
-                        <p>Of a thousand rainy days since we first met</p>
-                        <p>It's a big enough umbrella</p>
-                        <p>But it's always me that ends up getting wet</p>
-                        <p class="chorus">Every little thing she does is magic</p>
-                        <p class="chorus">Everything she does just turns me on</p>
-                        <p class="chorus">Even though my life before was tragic</p>
-                        <p class="chorus">Now I know my love for her goes on</p>
-                    </div>
-                    
-                    <div class="lyrics-section" id="lyricsSection3">
-                        <p>I resolve to call her up</p>
-                        <p>A thousand times a day</p>
-                        <p>And ask her if she'll marry me</p>
-                        <p>In some old fashioned way</p>
-                        <p class="chorus">But my silent fears have gripped me</p>
-                        <p class="chorus">Long before I reach the phone</p>
-                        <p class="chorus">Long before my tongue has tripped me</p>
-                        <p class="chorus">Must I always be alone?</p>
-                        <p class="chorus">Every little thing she does is magic</p>
-                        <p class="chorus">Everything she does just turns me on</p>
-                        <p class="chorus">Even though my life before was tragic</p>
-                        <p class="chorus">Now I know my love for her goes on</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <div class="sad-card">
             <p class="sad-text">If you need someone to talk to right now, I'm just a message away:</p>
-            <a href="tel:+1234567890" class="contact-link">📞 Call Me</a>
-            <a href="sms:+1234567890" class="contact-link">💬 Text Me</a>
+            <a href="tel:+94772397767" class="contact-link">📞 Call Me</a>
+            <a href="https://wa.me/94772397767" class="contact-link">💬 WhatsApp Me</a>
         </div>
         
         <a href="index.html" class="back-link">← Go Back To Our Anniversary Site</a>
@@ -403,6 +481,121 @@
     
     <script src="js/script.js"></script>
     <script>
+        // Enhanced background music control and floating emojis for sadday.html
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start emoji system after a short delay
+            setTimeout(createPageFloatingEmojis, 1000);
+            
+            // Audio controls setup
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const muteBtn = document.getElementById('muteBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            
+            let isMuted = false;
+            let previousVolume = 0.5;
+            let isPlaying = false;
+            
+            if (backgroundMusic) {
+                console.log('Audio element found. Setting up controls...');
+                backgroundMusic.volume = 0.5;
+                
+                // Set initial volume slider value
+                if (volumeSlider) volumeSlider.value = 50;
+                
+                // Track when audio actually starts/stops playing
+                backgroundMusic.addEventListener('play', () => {
+                    isPlaying = true;
+                    if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    console.log('Music started playing');
+                });
+                
+                backgroundMusic.addEventListener('pause', () => {
+                    isPlaying = false;
+                    if (playPauseBtn) playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    console.log('Music paused');
+                });
+                
+                backgroundMusic.addEventListener('error', (e) => {
+                    console.error('Audio error:', e);
+                });
+                
+                // Play/Pause button functionality
+                if (playPauseBtn) {
+                    playPauseBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('Play/Pause clicked. Current state - paused:', backgroundMusic.paused, 'isPlaying:', isPlaying);
+                        
+                        if (backgroundMusic.paused || !isPlaying) {
+                            backgroundMusic.play().then(() => {
+                                console.log('Play successful');
+                            }).catch(err => {
+                                console.error('Play failed:', err);
+                            });
+                        } else {
+                            backgroundMusic.pause();
+                            console.log('Pause requested');
+                        }
+                    });
+                }
+                
+                // Mute button functionality
+                if (muteBtn) {
+                    muteBtn.addEventListener('click', function() {
+                        if (isMuted) {
+                            backgroundMusic.volume = previousVolume;
+                            if (volumeSlider) volumeSlider.value = previousVolume * 100;
+                            muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                            isMuted = false;
+                            console.log('Audio unmuted. Volume:', Math.round(previousVolume * 100) + '%');
+                        } else {
+                            previousVolume = backgroundMusic.volume;
+                            backgroundMusic.volume = 0;
+                            if (volumeSlider) volumeSlider.value = 0;
+                            muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                            isMuted = true;
+                            console.log('Audio muted');
+                        }
+                    });
+                }
+                
+                // Volume slider functionality
+                if (volumeSlider) {
+                    volumeSlider.addEventListener('input', function() {
+                        const volume = this.value / 100;
+                        backgroundMusic.volume = volume;
+                        
+                        // Update mute button icon based on volume
+                        if (volume === 0) {
+                            if (muteBtn) muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                            isMuted = true;
+                        } else if (volume < 0.5) {
+                            if (muteBtn) muteBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+                            isMuted = false;
+                            previousVolume = volume;
+                        } else {
+                            if (muteBtn) muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                            isMuted = false;
+                            previousVolume = volume;
+                        }
+                        
+                        console.log('Volume changed to:', Math.round(volume * 100) + '%');
+                    });
+                }
+                
+                // Try auto-play (usually blocked by browsers)
+                backgroundMusic.play().then(() => {
+                    console.log('Background music started automatically');
+                }).catch(e => {
+                    console.log('Auto-play blocked. Click play button to start music.');
+                });
+                
+            } else {
+                console.error('Background music element not found!');
+            }
+        });
+        
+        // Hug button functionality
         document.getElementById('hug-button').addEventListener('click', function() {
             const hugAnimation = document.getElementById('hug-animation');
             hugAnimation.classList.add('active');
@@ -417,6 +610,7 @@
             }
         });
         
+        // Function for hug button hearts
         function createFloatingHeart() {
             const heart = document.createElement('div');
             heart.style.position = 'fixed';
@@ -438,6 +632,73 @@
             
             setTimeout(() => {
                 heart.remove();
+            }, 2000);
+        }
+        
+        // Floating Emojis System for Sad Day Page
+        function createPageFloatingEmojis() {
+            const emojiCategories = {
+                hearts: ['💖', '💕', '💝', '💗', '💓', '💞', '💘', '🩷', '❤️', '💛', '🧡', '💜', '🖤', '🤍'],
+                penguins: ['🐧', '🐧', '🐧'], // Multiple instances for higher frequency
+                puppies: ['🐶', '🐕', '🐕‍🦺', '🐩', '🐾'],
+                flowers: ['🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '💐', '🏵️', '🌿', '🍀', '🌱', '🌾', '🪻', '🌵', '🪴', '🥀']
+            };
+            
+            const patterns = ['pattern-1', 'pattern-2', 'pattern-3', 'pattern-4', 'pattern-5', 'pattern-6'];
+            
+            function createSingleEmoji() {
+                const emoji = document.createElement('div');
+                emoji.classList.add('floating-emoji');
+                
+                // Assign random pattern
+                const randomPattern = patterns[Math.floor(Math.random() * patterns.length)];
+                emoji.classList.add(randomPattern);
+                
+                // Choose random emoji from all categories
+                const allEmojis = [
+                    ...emojiCategories.hearts,
+                    ...emojiCategories.penguins,
+                    ...emojiCategories.puppies,
+                    ...emojiCategories.flowers
+                ];
+                
+                emoji.textContent = allEmojis[Math.floor(Math.random() * allEmojis.length)];
+                
+                // Random position across the viewport
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.top = Math.random() * 100 + 'vh';
+                
+                // Random size variation
+                const size = Math.random() * 1 + 1.2; // 1.2rem to 2.2rem
+                emoji.style.fontSize = size + 'rem';
+                
+                // Random animation delay
+                emoji.style.animationDelay = Math.random() * 10 + 's';
+                
+                // Random opacity variation
+                emoji.style.opacity = Math.random() * 0.3 + 0.2; // 0.2 to 0.5
+                
+                document.body.appendChild(emoji);
+                
+                // Remove emoji after animation cycle
+                setTimeout(() => {
+                    if (emoji.parentNode) {
+                        emoji.remove();
+                    }
+                }, 30000); // Remove after 30 seconds
+            }
+            
+            // Initial population - create 25 emojis
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => createSingleEmoji(), i * 300);
+            }
+            
+            // Continuous spawning - add new emojis periodically
+            setInterval(() => {
+                const currentEmojis = document.querySelectorAll('.floating-emoji');
+                if (currentEmojis.length < 30) {
+                    createSingleEmoji();
+                }
             }, 2000);
         }
     </script>
