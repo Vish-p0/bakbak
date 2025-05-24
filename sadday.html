@@ -31,6 +31,9 @@
             overflow-x: hidden;
             text-align: center;
             padding-top: 80px; /* Account for fixed navbar */
+            margin: 0;
+            padding-left: 0;
+            padding-right: 0;
         }
         
         /* Navbar Background for Sad Day Page */
@@ -40,10 +43,12 @@
         }
         
         .sad-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1rem;
             text-align: center;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .sad-card {
@@ -51,8 +56,11 @@
             border-radius: 10px;
             box-shadow: var(--shadow);
             padding: 2rem;
-            margin-bottom: 2rem;
+            margin: 0 auto 2rem auto;
             text-align: center;
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .sad-title {
@@ -81,7 +89,10 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin: 0 auto 2rem auto;
+            max-width: 800px;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .reason {
@@ -100,32 +111,271 @@
         }
         
         .meme-container {
+            display: block;
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+        
+        .meme-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .meme-bottom-row {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        /* Reset meme positioning */
+        .meme-item:nth-child(10),
+        .meme-item:nth-child(11) {
+            grid-column: unset;
+            grid-row: unset;
+        }
+        
+        .memes-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem auto;
+            text-align: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 1rem;
+            box-sizing: border-box;
         }
         
         .meme {
-            width: 200px;
-            height: 200px;
+            width: 320px;
+            height: 320px;
             background-color: var(--white);
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: var(--shadow);
             overflow: hidden;
             transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .meme img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transition: all 0.3s ease;
+            background-color: transparent;
         }
         
         .meme:hover {
             transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .laugh-button {
+            display: block;
+            margin: 1rem auto 0;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none;
+            border-radius: 25px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .laugh-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4);
+        }
+        
+        .laugh-button:active {
+            transform: scale(0.95);
+        }
+        
+        .meme-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .love-letters-section {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            perspective: 1000px;
+            margin: 2rem 1rem;
+        }
+        
+        .love-letter {
+            position: absolute;
+            top: -50px;
+            left: -20px;
+            right: -20px;
+            height: 280px;
+            background: linear-gradient(to bottom, #fff 0%, #fff 90%, #f9f9f9 100%);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--text-color);
+            opacity: 0;
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            overflow-y: auto;
+            z-index: 10;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .envelope-container {
+            display: block;
+            margin: 1rem auto;
+            padding: 1rem 0;
+            max-width: 1000px;
+        }
+        
+        .envelope-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .envelope-bottom-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        /* Reset envelope positioning */
+        .envelope:nth-child(4),
+        .envelope:nth-child(5) {
+            grid-column: unset;
+            display: block;
+            margin-top: 0;
+        }
+        
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+        
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+            border: 2px solid #ddd;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            transform-origin: bottom;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        .envelope.opened .envelope-flap {
+            transform: rotateX(-180deg);
+        }
+        
+        .heart-seal {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--primary-dark);
+            z-index: 3;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .envelope.opened .heart-seal {
+            opacity: 0.3;
+            transform: translateX(-50%) scale(0.8);
+        }
+        
+        .envelope.opened .love-letter {
+            opacity: 1;
+            transform: scale(1.05) translateY(-30px);
+            transition-delay: 0.4s;
+        }
+        
+        .love-letter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 5px,
+                var(--primary-color) 5px,
+                var(--primary-color) 7px
+            );
+        }
+        
+        .love-letter p {
+            margin-bottom: 0.8rem;
+        }
+        
+        .love-letter .letter-greeting,
+        .love-letter .letter-closing {
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .envelope-label {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            right: 0;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+            opacity: 0.8;
         }
         
         .hug-button {
@@ -227,9 +477,127 @@
                 font-size: 2.5rem;
             }
             
+            .sad-container {
+                padding: 1rem 0.5rem;
+                margin: 0 auto;
+                width: 100%;
+            }
+            
+            .memes-section {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+                width: 100%;
+            }
+            
+            .meme-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1rem 0.5rem;
+                margin: 1rem auto;
+                width: 100%;
+                justify-items: center;
+            }
+            
+            .meme-bottom-row {
+                flex-direction: column;
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+            
             .meme {
-                width: 150px;
-                height: 150px;
+                width: 280px;
+                height: 280px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .meme img {
+                object-fit: contain;
+            }
+            
+            .laugh-button {
+                font-size: 1.3rem;
+                padding: 0.7rem 1.3rem;
+            }
+            
+            .love-letters-section {
+                margin: 1rem auto;
+                padding: 1rem 0.5rem;
+                width: 100%;
+            }
+            
+            .envelope {
+                width: 280px;
+                height: 180px;
+                margin: 1.5rem 0.5rem;
+            }
+            
+            .love-letter {
+                font-size: 0.9rem;
+                padding: 1rem;
+                height: 250px;
+                left: -10px;
+                right: -10px;
+            }
+            
+            .envelope-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin: 2rem auto;
+                padding: 2rem 0;
+                width: 100%;
+                justify-items: center;
+            }
+            
+            .envelope-bottom-row {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+        }
+        
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .memes-section {
+                margin: 1.5rem auto;
+            }
+            
+            .meme-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.5rem;
+                margin: 1.5rem auto;
+            }
+            
+            .meme-bottom-row {
+                gap: 2.5rem;
+                margin-top: 2rem;
+            }
+            
+            .meme {
+                width: 300px;
+                height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .meme img {
+                object-fit: contain;
+            }
+            
+            .love-letters-section {
+                margin: 1.5rem auto;
+            }
+            
+            .envelope-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                margin: 3rem auto;
+            }
+            
+            .envelope-bottom-row {
+                gap: 1.5rem;
+                margin-top: 2rem;
             }
         }
         
@@ -424,40 +792,155 @@
             <div class="reason">Even on your worst days, you're still amazing to me.</div>
         </div>
         
+        <!-- Love Letters Section -->
+        <div class="love-letters-section">
+            <h2 class="sad-subtitle">Love Letters To Brighten Your Day</h2>
+            <div class="envelope-container">
+                <div class="envelope-grid">
+                    <div class="envelope" data-envelope="1">
+                        <div class="envelope-back"></div>
+                        <div class="envelope-flap"></div>
+                        <div class="heart-seal">💌</div>
+                        <div class="love-letter">
+                            <p class="letter-greeting">My Dearest Love,</p>
+                            <p>When the world feels heavy and your heart feels sad, remember that you are my sunshine on the cloudiest days. Your smile has the power to light up the darkest moments, and your presence makes everything better.</p>
+                            <p>You are stronger than you know, braver than you feel, and more loved than you can imagine.</p>
+                            <p class="letter-closing">Forever yours,<br>Your Dudu 💕</p>
+                        </div>
+                        <div class="envelope-label">Click to open 💖</div>
+                    </div>
+                    
+                    <div class="envelope" data-envelope="2">
+                        <div class="envelope-back"></div>
+                        <div class="envelope-flap"></div>
+                        <div class="heart-seal">💝</div>
+                        <div class="love-letter">
+                            <p class="letter-greeting">To My Beautiful Bak Bak,</p>
+                            <p>Bad days don't last, but resilient people like you do. You've overcome so much already, and I believe in your strength to get through this too. Your kindness, your laugh, your gentle heart - these are treasures that make the world better.</p>
+                            <p>I'm here for you, always and forever.</p>
+                            <p class="letter-closing">With all my love,<br>Your Devoted Lover 🌸</p>
+                        </div>
+                        <div class="envelope-label">Click to open 💕</div>
+                    </div>
+                    
+                    <div class="envelope" data-envelope="3">
+                        <div class="envelope-back"></div>
+                        <div class="envelope-flap"></div>
+                        <div class="heart-seal">💗</div>
+                        <div class="love-letter">
+                            <p class="letter-greeting">My Perfect Person,</p>
+                            <p>In a world of billions, you are the one who makes my heart skip a beat. Your tears are temporary, but your beauty - inside and out - is eternal. You bring joy to everyone around you, including me, especially me.</p>
+                            <p>Tomorrow is a new day full of possibilities, and I'll be right there with you.</p>
+                            <p class="letter-closing">Always and forever,<br>Your Loving Everything 💖</p>
+                        </div>
+                        <div class="envelope-label">Click to open 💞</div>
+                    </div>
+                </div>
+                
+                <div class="envelope-bottom-row">
+                    <div class="envelope" data-envelope="4">
+                        <div class="envelope-back"></div>
+                        <div class="envelope-flap"></div>
+                        <div class="heart-seal">💌</div>
+                        <div class="love-letter">
+                            <p class="letter-greeting">Sweet Baby,</p>
+                            <p>Even when the clouds gather and the storms come, remember that you are my rainbow after every rain. Your courage inspires me, your kindness heals me, and your love completes me in ways I never knew were possible.</p>
+                            <p>You are not alone in this journey - I'm here, holding your hand through it all.</p>
+                            <p class="letter-closing">With endless love,<br>Your Forever Supporter 🌈</p>
+                        </div>
+                        <div class="envelope-label">Click to open 💖</div>
+                    </div>
+                    
+                    <div class="envelope" data-envelope="5">
+                        <div class="envelope-back"></div>
+                        <div class="envelope-flap"></div>
+                        <div class="heart-seal">💝</div>
+                        <div class="love-letter">
+                            <p class="letter-greeting">My Precious Bak Bak,</p>
+                            <p>When sadness visits, remember all the times you've made others smile. Your light doesn't dim just because you're going through a tough time - it shines even brighter because of your resilience. You are loved beyond measure.</p>
+                            <p>This too shall pass, and I'll be here when it does, celebrating your strength.</p>
+                            <p class="letter-closing">Yours through every season,<br>Your Devoted Heart 💫</p>
+                        </div>
+                        <div class="envelope-label">Click to open 💕</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <h2 class="sad-subtitle">Some Memes to Make You Smile</h2>
-        <div class="meme-container">
-            <div class="meme">
-                <img src="assets/images/meme1.jpeg" alt="Funny Meme 1">
-            </div>
-            <div class="meme">
-                <img src="assets/images/meme2.jpeg" alt="Funny Meme 2">
-            </div>
-            <div class="meme">
-                <img src="assets/images/meme3.jpeg" alt="Funny Meme 3">
-            </div>
-            <div class="meme">
-                <img src="assets/images/meme4.jpeg" alt="Funny Meme 4">
-            </div>
-            <div class="meme">
-                <img src="assets/images/meme5.jpeg" alt="Funny Meme 4">
-            </div>
-            <div class="meme">
-                <img src="assets/images/meme6.jpeg" alt="Funny Meme 1">
-            </div>
-            <div class="meme">
-                <img src="assets/images/meme7.jpeg" alt="Funny Meme 2">
-            </div>
-            <div class="meme">
-                <img src="assets/images/meme8.jpeg" alt="Funny Meme 3">
-            </div>
-            <div class="meme">
-                <img src="assets/images/meme9.jpeg" alt="Funny Meme 4">
-            </div>
-            <div class="meme">
-                <img src="assets/images/meme10.jpeg" alt="Funny Meme 4">
-            </div>
-             <div class="meme">
-                <img src="assets/images/meme11.jpeg" alt="Funny Meme 4">
+        <div class="memes-section">
+            <div class="meme-container">
+                <div class="meme-grid">
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme1.jpeg" alt="Funny Meme 1">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme2.jpeg" alt="Funny Meme 2">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme3.jpeg" alt="Funny Meme 3">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme4.jpeg" alt="Funny Meme 4">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme5.jpeg" alt="Funny Meme 5">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme6.jpeg" alt="Funny Meme 6">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme7.jpeg" alt="Funny Meme 7">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme8.jpeg" alt="Funny Meme 8">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme9.jpeg" alt="Funny Meme 9">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                </div>
+                
+                <div class="meme-bottom-row">
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme10.jpeg" alt="Funny Meme 10">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                    <div class="meme-item">
+                        <div class="meme">
+                            <img src="assets/images/meme11.jpeg" alt="Funny Meme 11">
+                        </div>
+                        <button class="laugh-button" onclick="createLaughEmojis(this)">😂</button>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -700,6 +1183,87 @@
                     createSingleEmoji();
                 }
             }, 2000);
+        }
+        
+        // Love Letters Envelope functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const envelopes = document.querySelectorAll('.envelope');
+            
+            envelopes.forEach(envelope => {
+                envelope.addEventListener('click', function() {
+                    // Toggle opened state
+                    this.classList.toggle('opened');
+                    
+                    // Create floating hearts when envelope is opened
+                    if (this.classList.contains('opened')) {
+                        for (let i = 0; i < 10; i++) {
+                            createEnvelopeHeart(this);
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Function for envelope opening hearts
+        function createEnvelopeHeart(envelope) {
+            const heart = document.createElement('div');
+            const rect = envelope.getBoundingClientRect();
+            
+            heart.style.position = 'fixed';
+            heart.style.fontSize = `${Math.random() * 15 + 10}px`;
+            heart.style.left = `${rect.left + rect.width / 2 + (Math.random() * 60 - 30)}px`;
+            heart.style.top = `${rect.top + rect.height / 2}px`;
+            heart.style.opacity = '0';
+            heart.style.transition = 'all 2s ease';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '999';
+            heart.innerHTML = '💕';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.style.opacity = '1';
+                heart.style.transform = `translate(${Math.random() * 100 - 50}px, -${Math.random() * 80 + 40}px) rotate(${Math.random() * 360}deg)`;
+            }, 100);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+        
+        // Function for laugh button emojis
+        function createLaughEmojis(button) {
+            const rect = button.getBoundingClientRect();
+            
+            // Create 8-12 laugh emojis
+            const emojiCount = Math.floor(Math.random() * 5) + 8;
+            
+            for (let i = 0; i < emojiCount; i++) {
+                setTimeout(() => {
+                    const laughEmoji = document.createElement('div');
+                    
+                    laughEmoji.style.position = 'fixed';
+                    laughEmoji.style.fontSize = `${Math.random() * 10 + 15}px`;
+                    laughEmoji.style.left = `${rect.left + rect.width / 2 + (Math.random() * 80 - 40)}px`;
+                    laughEmoji.style.top = `${rect.top}px`;
+                    laughEmoji.style.opacity = '0';
+                    laughEmoji.style.transition = 'all 3s ease-out';
+                    laughEmoji.style.pointerEvents = 'none';
+                    laughEmoji.style.zIndex = '999';
+                    laughEmoji.innerHTML = '😂';
+                    
+                    document.body.appendChild(laughEmoji);
+                    
+                    setTimeout(() => {
+                        laughEmoji.style.opacity = '1';
+                        laughEmoji.style.transform = `translate(${Math.random() * 100 - 50}px, -${Math.random() * 150 + 100}px) rotate(${Math.random() * 360}deg)`;
+                    }, 50);
+                    
+                    setTimeout(() => {
+                        laughEmoji.remove();
+                    }, 3000);
+                }, i * 100);
+            }
         }
     </script>
 </body>
